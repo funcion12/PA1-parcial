@@ -20,9 +20,11 @@ public class CrearPilotoUseCaseTest {
     @Mock
     ICrearPilotoOutput crearPilotoOutput;
 
+    private UUID id = UUID.randomUUID();
+
     @Test
     public void crearPiloto_pilotoNoExiste_crearPiloto() throws ExceptionPilotoExiste {
-        Piloto elPiloto = crearPiloto(UUID.randomUUID(),"Franco colapinto","12345678" ,LocalDate.of(2003,12,16));
+        Piloto elPiloto = crearPiloto(id,"Franco colapinto","12345678" ,LocalDate.of(2003,12,16));
 
         CrearPilotoUseCase crearPilotoUseCase = new CrearPilotoUseCase(crearPilotoOutput);
 
@@ -39,7 +41,7 @@ public class CrearPilotoUseCaseTest {
     @Test
     public void crearPiloto_pilotoExiste_noCrearPiloto() throws ExceptionPilotoExiste {
 
-        Piloto elPiloto = crearPiloto(UUID.randomUUID(),"Franco colapinto","12345678" ,LocalDate.of(2003,12,16));
+        Piloto elPiloto = crearPiloto(id,"Franco colapinto","12345678" ,LocalDate.of(2003,12,16));
 
         CrearPilotoUseCase crearPilotoUseCase = new CrearPilotoUseCase(crearPilotoOutput);
 
@@ -52,7 +54,7 @@ public class CrearPilotoUseCaseTest {
     public void crearPiloto_atributosObligatorios_noCrearPiloto() throws ExceptionPilotoExiste {
         CrearPilotoUseCase crearPilotoUseCase = new CrearPilotoUseCase(crearPilotoOutput);
 
-        Piloto pilotoSinNombre = Piloto.crearPiloto(UUID.randomUUID(), "", "12345678", LocalDate.of(2000, 1, 1));
+        Piloto pilotoSinNombre = Piloto.crearPiloto(id, "", "12345678", LocalDate.of(2000, 1, 1));
         Piloto pilotoSinDocumento = Piloto.crearPiloto(UUID.randomUUID(), "Franco Colapinto", "", LocalDate.of(2000, 1, 1));
 
         Assertions.assertFalse(crearPilotoUseCase.crearPiloto(pilotoSinNombre));
@@ -63,7 +65,7 @@ public class CrearPilotoUseCaseTest {
     @Test
     public void crearPiloto_pilotoMenorDeEdad_noCrearPiloto() throws ExceptionPilotoExiste {
 
-        UUID id = UUID.randomUUID();
+
 
         Piloto elPiloto = crearPiloto(id, "Franco Colapinto", "12345678", LocalDate.of(2003, 12, 16));
 
@@ -76,7 +78,7 @@ public class CrearPilotoUseCaseTest {
 
     @Test
     public void crearPiloto_pilotoCreado_devolverID() throws ExceptionPilotoExiste {
-        Piloto elPiloto = Piloto.crearPiloto(UUID.randomUUID(), "Franco Colapinto", "12345678", LocalDate.of(2003, 12, 16));
+        Piloto elPiloto = Piloto.crearPiloto(id, "Franco Colapinto", "12345678", LocalDate.of(2003, 12, 16));
 
         CrearPilotoUseCase crearPilotoUseCase = new CrearPilotoUseCase(crearPilotoOutput);
 
