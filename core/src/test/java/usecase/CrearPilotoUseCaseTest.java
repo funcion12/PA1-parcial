@@ -49,7 +49,6 @@ public class CrearPilotoUseCaseTest {
         Assertions.assertThrows(ExceptionPilotoExiste.class, () -> crearPilotoUseCase.crearPiloto(elPiloto));
     }
 
-    //Todos los atributos de Piloto son obligatorios
     @Test
     public void crearPiloto_atributosObligatorios_noCrearPiloto() throws ExceptionPilotoExiste {
         CrearPilotoUseCase crearPilotoUseCase = new CrearPilotoUseCase(crearPilotoOutput);
@@ -62,7 +61,6 @@ public class CrearPilotoUseCaseTest {
 
     }
 
-    //El piloto no puede ser menor a 18 años
     @Test
     public void crearPiloto_pilotoMenorDeEdad_noCrearPiloto() throws ExceptionPilotoExiste {
 
@@ -77,8 +75,6 @@ public class CrearPilotoUseCaseTest {
         Assertions.assertEquals(LocalDate.of(2003, 12, 16), elPiloto.getFecha_Nacimiento());
     }
 
-    //El caso de uso debe devolver el ID asignado al Piloto creado exitosamente
-    //El ID del piloto debe ser de tipo UUID
     @Test
     public void crearPiloto_pilotoCreado_devolverID() throws ExceptionPilotoExiste {
         Piloto elPiloto = Piloto.crearPiloto(UUID.randomUUID(), "Franco Colapinto", "12345678", LocalDate.of(2003, 12, 16));
