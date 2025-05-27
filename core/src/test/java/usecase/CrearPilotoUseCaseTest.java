@@ -1,6 +1,5 @@
 package usecase;
 
-import exception.ExceptionNoPuedenExisteDosDocumento;
 import exception.ExceptionPilotoExiste;
 import model.Piloto;
 import org.junit.jupiter.api.Assertions;
